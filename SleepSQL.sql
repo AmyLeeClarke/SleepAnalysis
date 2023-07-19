@@ -40,6 +40,22 @@ SELECT COUNT(sleep_duration), sleep_duration FROM health
 -- Q2 Occupation against stress level and heart rate.
 
 
+SELECT COUNT(occupation), occupation FROM health 
+WHERE stress_levell BETWEEN 3 AND 5 
+AND heart_rate BETWEEN 65 AND 75 
+GROUP BY occupation 
+ORDER BY COUNT(occupation);
+-- The lowest stress level jobs are engineer, lawyer, nursem teacher, accountant. These also have a lower heart rate.
+
+
+SELECT COUNT(occupation), occupation FROM health 
+WHERE stress_levell BETWEEN 6 AND 8 
+AND heart_rate BETWEEN 76 AND 86 
+GROUP BY occupation 
+ORDER BY COUNT(occupation);
+-- There isnt a lot of people who have a highly stressful job and heartrate that is high. Why is this?
+-- The type of jobs deemed stressful and have a huigh heart rate are mostly desk jobs
+
 
 
 
