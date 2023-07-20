@@ -41,25 +41,52 @@ SELECT COUNT(sleep_duration), sleep_duration FROM health
 
 
 SELECT COUNT(occupation), occupation FROM health 
-WHERE stress_levell BETWEEN 3 AND 5 
-AND heart_rate BETWEEN 65 AND 75 
-GROUP BY occupation 
-ORDER BY COUNT(occupation);
+	WHERE stress_levell BETWEEN 3 AND 5 
+	AND heart_rate BETWEEN 65 AND 75 
+	GROUP BY occupation 
+	ORDER BY COUNT(occupation);
 -- The lowest stress level jobs are engineer, lawyer, nursem teacher, accountant. These also have a lower heart rate.
 
 
 SELECT COUNT(occupation), occupation FROM health 
-WHERE stress_levell BETWEEN 6 AND 8 
-AND heart_rate BETWEEN 76 AND 86 
-GROUP BY occupation 
-ORDER BY COUNT(occupation);
+	WHERE stress_levell BETWEEN 6 AND 8 
+	AND heart_rate BETWEEN 76 AND 86 
+	GROUP BY occupation 
+	ORDER BY COUNT(occupation);
 -- There isnt a lot of people who have a highly stressful job and heartrate that is high. Why is this?
--- The type of jobs deemed stressful and have a huigh heart rate are mostly desk jobs
+-- The type of jobs deemed stressful and have a high heart rate are mostly desk jobs
+
+
+SELECT COUNT(occupation), occupation FROM health 
+	WHERE stress_levell BETWEEN 6 AND 8 
+	AND BMI LIKE '%Overweight%' OR '&Obese%'
+	GROUP BY occupation 
+	ORDER BY COUNT(occupation);
+-- The most stressful occupations for overweight and obese people are a nurse (33) and salesperson (32).
+
+
+SELECT COUNT(occupation), occupation FROM health 
+	WHERE stress_levell BETWEEN 6 AND 8 
+	AND BMI LIKE '%Normal%' OR '&Normalweight%'
+	GROUP BY occupation 
+	ORDER BY COUNT(occupation);
+-- The most stressful occupation for normal and normal weight people is a doctor (65).
+-- Why are the majority of nurses working in stressful conditions overweight/obese yet 
+-- most doctors are normal weight?
+-- "Doctors are medical experts who are required to perform a variety of procedures, while 
+-- nurses are typically thought of as someone who is constantly ready to help the doctor."
+-- Doctors vs nurse pay, can a doctor afford to live a healthier lifestyle than a nurse and salesperson?
 
 
 
+-- Q3: Does having a sleep disorder affect how much physical activity a person can do?
 
 
+SELECT COUNT(sleep_disorder), sleep_disorder FROM health 
+	GROUP BY sleep_disorder;
+-- The majority of people do not have a sleep disorder, 78 have sleep apnea and 77 have insomnia
+
+SELECT 
 
 
 
