@@ -86,9 +86,19 @@ SELECT COUNT(sleep_disorder), sleep_disorder FROM health
 	GROUP BY sleep_disorder;
 -- The majority of people do not have a sleep disorder, 78 have sleep apnea and 77 have insomnia
 
-SELECT 
+SELECT COUNT(pa_level), pa_level FROM health 
+	WHERE sleep_disorder NOT LIKE '%None%' 
+    GROUP BY pa_level 
+    ORDER BY COUNT(pa_level);
+-- Lowest pa level is 30 and highest 90.
+-- 62 people with a sleep disorder only have 45 pa level however, 34 people have 90 pa level and 21 have 71 
+-- which is on the higher side of the pa levels of this sample of participants.
+-- Is this because of a specific sleep disorder?
 
-
+SELECT COUNT(pa_level), pa_level FROM health 
+	WHERE sleep_disorder NOT LIKE '%None%' LIKE '%Sleep Apnea%'
+    GROUP BY pa_level 
+    ORDER BY COUNT(pa_level);
 
 
 
