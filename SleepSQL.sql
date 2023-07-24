@@ -80,6 +80,7 @@ SELECT COUNT(occupation), occupation FROM health
 
 
 -- Q3: Does having a sleep disorder affect how much physical activity a person can do?
+-- having insomnia decreases pa activity however sleep apnea allows someone to have a healthy pa level.
 
 
 SELECT COUNT(sleep_disorder), sleep_disorder FROM health 
@@ -96,9 +97,18 @@ SELECT COUNT(pa_level), pa_level FROM health
 -- Is this because of a specific sleep disorder?
 
 SELECT COUNT(pa_level), pa_level FROM health 
-	WHERE sleep_disorder NOT LIKE '%None%' LIKE '%Sleep Apnea%'
+	WHERE sleep_disorder LIKE '%Sleep Apnea%' 
+    AND sleep_disorder NOT LIKE'%None%' 
     GROUP BY pa_level 
     ORDER BY COUNT(pa_level);
+    
+SELECT COUNT(pa_level), pa_level FROM health 
+	WHERE sleep_disorder LIKE '%Insomnia%' 
+    AND sleep_disorder NOT LIKE'%None%' 
+    GROUP BY pa_level 
+    ORDER BY COUNT(pa_level);
+-- People with sleep apnea tend to have a much higher pa level than people who have insomnia.
+-- The most common pa level for people with sleep apnea is 75, 31 people and insomnia being 45 with 59 people.
 
 
 
